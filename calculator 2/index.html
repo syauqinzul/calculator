@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Calculator - Kalkulator Modern</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan toggle theme -->
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-calculator"></i>
+                <h1>Neon<span>Calc</span></h1>
+            </div>
+            <div class="header-controls">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                    <span>Mode Gelap</span>
+                </button>
+                <button id="clear-history" class="history-btn" aria-label="Clear history">
+                    <i class="fas fa-trash"></i>
+                    <span>Hapus Riwayat</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Kalkulator Utama -->
+            <div class="calculator-wrapper">
+                <div class="calculator">
+                    <!-- Display dengan animasi -->
+                    <div class="display-container">
+                        <div class="display-header">
+                            <div class="mode-indicator">
+                                <span class="mode-dot scientific"></span>
+                                <span class="mode-dot memory"></span>
+                                <span class="mode-dot angle">DEG</span>
+                            </div>
+                            <div class="memory-display" id="memory-display">
+                                M: 0
+                            </div>
+                        </div>
+                        <div class="display">
+                            <div class="previous-operation" id="previous-operation">
+                                2 + 2
+                            </div>
+                            <div class="current-operation" id="current-operation">
+                                0
+                            </div>
+                            <div class="result-display" id="result-display"></div>
+                        </div>
+                    </div>
+
+                    <!-- Tombol-tombol kalkulator -->
+                    <div class="buttons-grid">
+                        <!-- Baris 1: Fungsi Khusus -->
+                        <button class="btn func" data-action="second" id="second-btn">
+                            <i class="fas fa-exchange-alt"></i> 2nd
+                        </button>
+                        <button class="btn func" data-action="sin">sin</button>
+                        <button class="btn func" data-action="cos">cos</button>
+                        <button class="btn func" data-action="tan">tan</button>
+                        <button class="btn func" data-action="pi">π</button>
+                        <button class="btn func" data-action="e">e</button>
+                        
+                        <!-- Baris 2: Memory & Clear -->
+                        <button class="btn memory" data-action="mc">MC</button>
+                        <button class="btn memory" data-action="mr">MR</button>
+                        <button class="btn memory" data-action="m-plus">M+</button>
+                        <button class="btn memory" data-action="m-minus">M-</button>
+                        <button class="btn operator" data-action="clear">C</button>
+                        <button class="btn operator" data-action="delete">
+                            <i class="fas fa-backspace"></i>
+                        </button>
+                        
+                        <!-- Baris 3: Scientific -->
+                        <button class="btn scientific" data-action="sqrt">√</button>
+                        <button class="btn scientific" data-action="square">x²</button>
+                        <button class="btn scientific" data-action="power">xʸ</button>
+                        <button class="btn scientific" data-action="log">log</button>
+                        <button class="btn scientific" data-action="ln">ln</button>
+                        <button class="btn operator" data-action="divide">÷</button>
+                        
+                        <!-- Baris 4: Angka -->
+                        <button class="btn scientific" data-action="factorial">x!</button>
+                        <button class="btn number" data-number="7">7</button>
+                        <button class="btn number" data-number="8">8</button>
+                        <button class="btn number" data-number="9">9</button>
+                        <button class="btn operator" data-action="multiply">×</button>
+                        
+                        <!-- Baris 5: Angka -->
+                        <button class="btn scientific" data-action="inverse">¹/x</button>
+                        <button class="btn number" data-number="4">4</button>
+                        <button class="btn number" data-number="5">5</button>
+                        <button class="btn number" data-number="6">6</button>
+                        <button class="btn operator" data-action="subtract">−</button>
+                        
+                        <!-- Baris 6: Angka -->
+                        <button class="btn scientific" data-action="percent">%</button>
+                        <button class="btn number" data-number="1">1</button>
+                        <button class="btn number" data-number="2">2</button>
+                        <button class="btn number" data-number="3">3</button>
+                        <button class="btn operator" data-action="add">+</button>
+                        
+                        <!-- Baris 7: Angka & Equals -->
+                        <button class="btn scientific" data-action="toggle-sign">±</button>
+                        <button class="btn number" data-number="0">0</button>
+                        <button class="btn number" data-number=".">.</button>
+                        <button class="btn equals" data-action="equals">
+                            <i class="fas fa-equals"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="info-panel">
+                    <div class="panel-header">
+                        <h3><i class="fas fa-info-circle"></i> Fitur Kalkulator</h3>
+                    </div>
+                    <div class="panel-content">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Mode Scientific</h4>
+                                <p>Sin, Cos, Tan, Log, Ln, dan fungsi matematika lanjutan</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-history"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Memory & Riwayat</h4>
+                                <p>Penyimpanan sementara dan riwayat perhitungan</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h4>Dual Theme</h4>
+                                <p>Mode terang dan gelap yang dapat disesuaikan</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Riwayat -->
+            <div class="history-sidebar">
+                <div class="sidebar-header">
+                    <h3><i class="fas fa-history"></i> Riwayat Perhitungan</h3>
+                    <div class="history-count" id="history-count">0 items</div>
+                </div>
+                <div class="history-list" id="history-list">
+                    <!-- Riwayat akan dimuat di sini -->
+                    <div class="empty-history">
+                        <i class="fas fa-clock"></i>
+                        <p>Riwayat perhitungan akan muncul di sini</p>
+                    </div>
+                </div>
+                <div class="sidebar-footer">
+                    <button class="export-btn" id="export-history">
+                        <i class="fas fa-download"></i> Ekspor Riwayat
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="shortcuts">
+                    <h4><i class="fas fa-keyboard"></i> Shortcut Keyboard</h4>
+                    <div class="shortcut-list">
+                        <span>0-9, .</span>Angka
+                        <span>+ - * /</span>Operator
+                        <span>Enter</span>Hasil
+                        <span>Esc</span>Clear
+                        <span>Delete</span>Hapus
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>© 2024 NeonCalc - Kalkulator Modern dengan JavaScript</p>
+                    <p class="hint">Tekan F12 untuk membuka Developer Tools dan melihat log</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Notifikasi Toast -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span class="toast-message">Operasi berhasil!</span>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
