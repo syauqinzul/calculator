@@ -841,3 +841,9 @@ window.debugCalculator = () => {
     console.groupEnd();
     return window.calculator;
 };
+
+// ==============================================   
+// END OF FILE
+// ==============================================
+
+

@@ -33,3 +33,4 @@ describe('Full Calculator Flow', () => {
         expect(getMemory()).toBe(8);
     });
 });
+
